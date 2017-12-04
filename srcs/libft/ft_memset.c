@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/17 13:18:07 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/17 13:37:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if (ap != NULL)
-	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
-	}
+	size_t i;
+
+	i = -1;
+	while (++i < len)
+		*((char *)b + i) = (char)c;
+	return (b);
 }

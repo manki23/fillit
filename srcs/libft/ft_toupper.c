@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/10 14:25:39 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/10 14:50:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+int		ft_toupper(int c)
 {
-	if (ap != NULL)
-	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
-	}
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }

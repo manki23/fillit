@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/13 14:39:57 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/15 17:50:20 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_memdel(void **ap)
+void	ft_strdel(char **as)
 {
-	if (ap != NULL)
+	if (as != NULL)
 	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
+		free(*as);
+		*as = NULL;
 	}
 }

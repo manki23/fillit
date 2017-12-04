@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/13 14:42:38 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/15 10:49:20 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+void	ft_strclr(char *s)
 {
-	if (ap != NULL)
+	int i;
+
+	if (s != NULL)
 	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
+		i = -1;
+		while (s[++i])
+			s[i] = '\0';
 	}
 }

@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_norme.c                                   :+:      :+:    :+:   */
+/*   ft_stock_and_check_file.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 11:46:25 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/26 09:57:46 by manki            ###   ########.fr       */
+/*   Created: 2017/12/01 16:33:51 by manki             #+#    #+#             */
+/*   Updated: 2017/12/04 17:50:19 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "fillit.h"
-#include <unistd.h>
 #include <fcntl.h>
-#include <stdlib.h>
+#include <unistd.h>
+
+int				ft_nb_row(char *tab)
+{
+	int		i;
+	int		row;
+
+	row = 0;
+	i = -1;
+	while (tab[++i])
+	{
+		while (tab[i] != '\n')
+			++i;
+		++row;
+	}
+	return (row);
+}
 
 static t_bool	ft_check_number(char *tab)
 {
@@ -38,8 +52,7 @@ static t_bool	ft_check_number(char *tab)
 		{
 			if (count != 4)
 				return (0);
-			else
-				count = 0;
+			count = 0;
 		}
 	}
 	return (1);
@@ -47,26 +60,25 @@ static t_bool	ft_check_number(char *tab)
 
 static t_bool	ft_check_norme(char *tab)
 {
-	int		i;
-	int		col;
-	int		row;
+	int			i;
+	t_coord		c;
 
 	i = -1;
-	row = 0;
+	c.y = 0;
 	while (tab[++i])
 	{
-		col = 0;
+		c.x = 0;
 		while (tab[i] != '\n')
 		{
 			if (tab[i] != '.' && tab[i] != '#')
 				return (0);
-			col++;
+			c.x++;
 			++i;
 		}
-		row++;
-		if ((row % 5 == 0 && tab[i - 1] != '\n')
+		c.y++;
+		if ((c.y % 5 == 0 && tab[i - 1] != '\n')
 			|| (tab[i] == '\n' && tab[i - 1] == '\n' && tab[i + 1] == '\n')
-			|| (col != 4 && col != 0) || !(ft_check_number(tab)))
+			|| (c.x != 4 && c.x != 0) || !(ft_check_number(tab)))
 			return (0);
 		else if (tab[i - 1] != '\n' && tab[i] == '\n' && tab[i + 1] == '\0')
 			return (1);
@@ -74,7 +86,7 @@ static t_bool	ft_check_norme(char *tab)
 	return (0);
 }
 
-static char		*ft_write(char *file, char *tab)
+static char		*ft_writetab(char *file, char *tab)
 {
 	int		fd;
 	char	buf;
@@ -89,7 +101,7 @@ static char		*ft_write(char *file, char *tab)
 	return (tab);
 }
 
-char			*ft_stock_and_check_file(char *file)
+char			*ft_checkfile(char *file)
 {
 	int		fd;
 	char	buf;
@@ -103,9 +115,9 @@ char			*ft_stock_and_check_file(char *file)
 		len++;
 	if (!(tab = ft_memalloc(len + 1)))
 		return (NULL);
-	if (!(tab = ft_write(file, tab)))
+	if (!(tab = ft_writetab(file, tab)))
 		return (NULL);
-	if (!ft_check_norme(tab))
+	if (!ft_check_norme(tab) || ((ft_nb_row(tab) + 1) % 5))
 		return (NULL);
 	close(fd);
 	return (tab);

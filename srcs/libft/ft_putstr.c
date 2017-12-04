@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/06 16:44:00 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/20 16:03:24 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include <unistd.h>
 
-void	ft_memdel(void **ap)
+void	ft_putstr(char *str)
 {
-	if (ap != NULL)
+	int i;
+
+	if (str != NULL)
 	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
+		i = ft_strlen(str);
+		write(1, str, i);
 	}
 }

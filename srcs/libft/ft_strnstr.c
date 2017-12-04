@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/09 17:01:54 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/15 12:56:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	if (ap != NULL)
+	size_t i;
+	size_t j;
+
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	i = 0;
+	while (haystack[i] && i < len)
 	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
+		j = 0;
+		while (haystack[i + j] == needle[j] && (i + j) < len
+				&& haystack[i + j] && needle[j])
+			++j;
+		if (needle[j] == '\0')
+			return ((char *)haystack + i);
+		++i;
 	}
+	return (NULL);
 }

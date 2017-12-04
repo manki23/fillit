@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/09 11:13:31 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/17 13:21:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (ap != NULL)
-	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
-	}
+	size_t	i;
+
+	i = -1;
+	if ((char *)src > (char *)dst)
+		while (++i < len)
+			*(char *)&dst[i] = *(char *)&src[i];
+	else
+		while (++i < len)
+			*(char *)&dst[len - 1 - i] = *(char *)&src[len - 1 - i];
+	return (dst);
 }

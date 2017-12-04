@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/13 13:58:04 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/14 09:20:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+static void	ft_calc(int nb, int fd)
 {
-	if (ap != NULL)
+	if (nb >= 10 || nb <= -10)
 	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
+		ft_calc(nb / 10, fd);
+		ft_calc(nb % 10, fd);
 	}
+	else if (nb >= 0)
+		ft_putchar_fd(nb + '0', fd);
+	else
+		ft_putchar_fd('0' - nb, fd);
+}
+
+void		ft_putnbr_fd(int nb, int fd)
+{
+	if (nb < 0)
+		ft_putchar_fd('-', fd);
+	ft_calc(nb, fd);
 }

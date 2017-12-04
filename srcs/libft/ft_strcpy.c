@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 11:48:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/30 11:03:31 by lguiller         ###   ########.fr       */
+/*   Created: 2017/11/09 14:40:22 by lguiller          #+#    #+#             */
+/*   Updated: 2017/11/10 09:32:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	ft_memdel(void **ap)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	if (ap != NULL)
+	int	i;
+
+	i = 0;
+	while (src[i])
 	{
-		free(*(char **)ap);
-		*(char **)ap = NULL;
+		dst[i] = src[i];
+		i++;
 	}
+	dst[i] = '\0';
+	return (dst);
 }
