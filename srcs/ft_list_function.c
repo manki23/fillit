@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:44:12 by manki             #+#    #+#             */
-/*   Updated: 2017/12/02 14:12:34 by manki            ###   ########.fr       */
+/*   Updated: 2017/12/23 15:06:37 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_tetris	*ft_create_elem(int *content)
 	t_tetris	*elem;
 	int			*copy;
 
-	elem = (t_tetris *)ft_memalloc(sizeof(t_tetris));
+	if (!(elem = (t_tetris *)ft_memalloc(sizeof(t_tetris))))
+		return (NULL);
 	if (elem)
 	{
 		copy = content;

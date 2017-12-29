@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 10:37:08 by manki             #+#    #+#             */
-/*   Updated: 2017/12/02 14:21:13 by manki            ###   ########.fr       */
+/*   Updated: 2017/12/27 16:23:50 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ static t_bool	ft_check_tetris(t_tetris *tetris)
 {
 	t_tetris	*tmp;
 	int			*id;
+	int			i;
 
+	i = 0;
 	if (tetris)
 	{
 		tmp = tetris;
@@ -46,8 +48,11 @@ static t_bool	ft_check_tetris(t_tetris *tetris)
 			if (!ft_check_one(id))
 				return (0);
 			tmp = tmp->next;
+			++i;
 		}
 	}
+	if (i > 26)
+		return (0);
 	return (1);
 }
 

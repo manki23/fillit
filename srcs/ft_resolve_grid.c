@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 13:50:30 by manki             #+#    #+#             */
-/*   Updated: 2017/12/04 18:42:19 by manki            ###   ########.fr       */
+/*   Updated: 2017/12/23 15:06:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@ static char		**ft_create_square(int len)
 	char	**square;
 	int		i;
 
-	if (!(square = (char **)malloc(sizeof(char *) * len)))
+	if (!(square = (char **)ft_memalloc(sizeof(char *) * (len + 1))))
 		return (NULL);
 	i = -1;
 	while (++i < len)
 	{
-		if (!(square[i] = (char *)malloc(sizeof(char) * len)))
+		if (!(square[i] = ft_strnew(len)))
 			return (NULL);
 		ft_memset(square[i], '.', len);
+		square[i][len] = '\0';
 	}
+	square[i] = 0;
 	return (square);
 }
 
@@ -37,9 +39,7 @@ void			ft_print_result(char **grid, int len)
 	c.y = -1;
 	while (++c.y < len)
 	{
-		c.x = -1;
-		while (++c.x < len)
-			ft_putchar(grid[c.y][c.x]);
+		ft_putstr(grid[c.y]);
 		ft_putchar('\n');
 	}
 }
@@ -70,10 +70,12 @@ char			**ft_resolve_grid(t_tetris *tetris)
 		return (NULL);
 	g.x = 0;
 	g.y = 0;
-	while (ft_recursive(tetris, grid, len, &g) != 1)
+	while (!ft_recursive(tetris, grid, len, &g))
 	{
 		ft_free_grid(grid, len);
-		len++;
+		++len;
+		g.x = 0;
+		g.y = 0;
 		if (!(grid = ft_create_square(len)))
 			return (NULL);
 	}

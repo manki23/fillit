@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 12:04:21 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/17 13:58:40 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/22 10:37:44 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		elem->content = ft_strdup(content);
+		if (!(elem->content = malloc(content_size)))
+			return (NULL);
+		ft_memcpy(elem->content, content, content_size);
 		elem->content_size = content_size;
 	}
 	elem->next = NULL;

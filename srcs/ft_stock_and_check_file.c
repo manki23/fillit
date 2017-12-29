@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:33:51 by manki             #+#    #+#             */
-/*   Updated: 2017/12/04 17:50:19 by manki            ###   ########.fr       */
+/*   Updated: 2017/12/27 16:07:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,9 @@ char			*ft_checkfile(char *file)
 	len = 0;
 	while (read(fd, &buf, 1) > 0)
 		len++;
-	if (!(tab = ft_memalloc(len + 1)))
-		return (NULL);
-	if (!(tab = ft_writetab(file, tab)))
-		return (NULL);
-	if (!ft_check_norme(tab) || ((ft_nb_row(tab) + 1) % 5))
+	if (!(tab = ft_strnew(len))
+	|| !(tab = ft_writetab(file, tab))
+	|| !ft_check_norme(tab) || ((ft_nb_row(tab) + 1) % 5))
 		return (NULL);
 	close(fd);
 	return (tab);

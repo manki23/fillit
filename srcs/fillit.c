@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 14:00:21 by manki             #+#    #+#             */
-/*   Updated: 2017/12/04 18:56:26 by manki            ###   ########.fr       */
+/*   Updated: 2017/12/29 16:21:29 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static int		ft_error(void)
+static int		ft_error(char *str, int fd)
 {
-	ft_putstr("error\n");
+	ft_putendl_fd(str, fd);
 	return (-1);
 }
 
@@ -30,15 +30,13 @@ int				main(int ac, char **av)
 	if (ac == 1)
 	{
 		if (!(tab = ft_checkfile(av[0])))
-			return (ft_error());
+			return (ft_error("error", 1));
 		if (!(tetris = ft_record_tetris(tab)))
-			return (ft_error());
+			return (ft_error("error", 1));
 		ft_resolve_grid(tetris);
 		ft_free_tetris(tetris);
 	}
-	else if (ac < 1)
-		write(2, "File name missing.\n", 19);
 	else
-		write(2, "Too many arguments.\n", 20);
+		ft_putendl_fd("usage: ./fillit [file_name]", 2);
 	return (0);
 }

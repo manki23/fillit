@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 13:39:34 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/15 10:55:48 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:28:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 void	ft_putendl(char const *s)
 {
-	int i;
-
 	if (s != NULL)
-	{
-		i = -1;
-		while (s[++i])
-			ft_putchar(s[i]);
-		ft_putchar('\n');
-	}
+		ft_putendl_fd(s, 1);
 }

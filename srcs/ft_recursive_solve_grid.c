@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 14:49:09 by manki             #+#    #+#             */
-/*   Updated: 2017/12/04 19:05:11 by manki            ###   ########.fr       */
+/*   Updated: 2017/12/29 12:39:15 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static t_bool	ft_increment_g(t_coord *g, int len)
 {
-	if (g->y + 1 < len)
+	if (g->y + 1 <= len)
 	{
 		if (g->x + 1 < len)
 			g->x++;
@@ -55,14 +55,12 @@ static void		ft_remove_last(char **grid, int len, int index, t_coord *g)
 	ft_increment_g(g, len);
 }
 
-void			ft_decrypt(t_tetris *tetris, t_coord *c, t_coord *g)
+static void		ft_decrypt(t_coord *c, t_coord *g, int *id)
 {
 	int		i;
-	int		*id;
 
 	c[0].x = g->x;
 	c[0].y = g->y;
-	id = tetris->id;
 	i = 0;
 	while (++i < 4)
 	{
@@ -91,14 +89,15 @@ t_bool			ft_fill_one(t_tetris *tetris, char **grid, int l, t_coord *g)
 	int			i;
 	int			*id;
 
-	if (!(c = (t_coord *)malloc(sizeof(t_coord) * 4)))
+	if (!(c = (t_coord *)ft_memalloc(sizeof(t_coord) * 4)))
 		return (0);
-	ft_decrypt(tetris, c, g);
+	id = tetris->id;
+	ft_decrypt(c, g, id);
 	i = -1;
 	while (++i < 4)
 	{
 		if (c[i].x >= l || c[i].y >= l || c[i].x < 0 || c[i].y < 0
-			|| grid[c[i].y][c[i].x] != '.')
+				|| grid[c[i].y][c[i].x] != '.')
 		{
 			free(c);
 			return (0);

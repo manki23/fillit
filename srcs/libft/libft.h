@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 17:16:27 by lguiller          #+#    #+#             */
-/*   Updated: 2017/11/17 13:32:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2017/12/27 16:24:31 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 
 # include <string.h>
+
+# define CHECK_ERROR(value) if (!value) return (-1);
 
 typedef struct		s_list
 {
@@ -43,12 +45,14 @@ char				*ft_strnstr(const char *haystack,
 								const char *needle, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t				ft_strcspn(const char *s1, const char *s2);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
+int					ft_isprime(unsigned int nb);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 
@@ -68,10 +72,12 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
-void				ft_putchar(char c);
+char				*ft_itoa_base(int value, int base);
+void				ft_putchar(int c);
 void				ft_putstr(char *str);
 void				ft_putendl(char const *s);
 void				ft_putnbr(int nb);
+void				ft_putnbr_base(int nb, char *base);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
@@ -83,5 +89,16 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+void				ft_putaddr(void *str);
+void				ft_putaddr_fd(void *str, int fd);
+
+int					ft_brackets(char *str);
+
+int					ft_abs(int nb);
+int					ft_sqrt(int nb);
+
+unsigned int		ft_pgcd(unsigned int a, unsigned int b);
+unsigned int		ft_ppcm(unsigned int a, unsigned int b);
 
 #endif
