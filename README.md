@@ -1,11 +1,11 @@
 # Fillit
 
-__Fillit__ est un projet vous permettant de decouvrir et/ou de vous familiariser avec
-une problematique récurrente en programmation : la recherche d’une solution optimale
-parmi un très grand nombre de possibilités, dans un délai raisonable. Dans le cas de ce
-projet, il s’agira d’agencer des *Tetriminos* entre eux et de déterminer le plus petit carré
-possible pouvant les acueillir.
-Un *Tetriminos* est une figure géométrique formée de 4 blocs que vous connaissez
+## Introduction
+
+__Fillit__ est un projet vous permettant de decouvrir et/ou de vous familiariser avec une problematique récurrente en programmation : la recherche d’une solution optimale parmi un très grand nombre de possibilités, dans un délai raisonable.
+
+Dans le cas de ce projet, il s’agira d’agencer des *Tetriminos* entre eux et de déterminer le plus petit carré
+possible pouvant les acueillir. Un *Tetriminos* est une figure géométrique formée de 4 blocs que vous connaissez
 grâce au célèbre jeu Tetris.
 
 ![Tetriminos](https://static.abcteach.com/content_preview/t/tetrominos_puzzle_turtle_p-1.png "Tetriminos")
@@ -32,4 +32,16 @@ Quelques exemples de descriptions de Tetriminos invalides :
 ...#    ..#.    ##...   ##    ....    ....    ####    ####    HH..
 ....    .#..    ....    #.    ....    ....    ####    ,,,,    ....
 ....    #...    ....          ....    ##..    ####    ,,,,    ....
+```
+
+## Téléchargement
+
+```
+git clone https://github.com/manki23/fillit.git ; cd fillit ; make
+```
+
+## Utilisation
+
+``` bash
+./fillit example/example10
 ```
